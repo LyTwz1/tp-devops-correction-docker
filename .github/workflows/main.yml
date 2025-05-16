@@ -20,6 +20,11 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify
         working-directory: ./simple-api
+        
+      - name: Build and test with Maven (SonarCloud)
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=LyTwz1_tp-devops-correction-docker -Dsonar.organization=lytwz1 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./simple-api/pom.xml
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build-and-push-docker-image:
     needs: test-backend
