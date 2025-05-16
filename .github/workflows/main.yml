@@ -16,3 +16,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+          
+      - name: Build and test with Maven
+        run: mvn clean verify
+        working-directory: ./simple-api
